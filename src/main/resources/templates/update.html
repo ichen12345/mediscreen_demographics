@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Patient Notes</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h1>Update Notes for Patient ID: <span th:text="${patient.patId}"></span></h1>
+
+<form action="#" th:action="@{/patHistory/update/{patId}(patId=${patient.patId})}" method="post">
+  <label for="note">New Note:</label>
+  <input type="text" id="note" name="note" required />
+  <button type="submit">Save</button>
+</form>
+
+<a href="/patHistory">Back to Patients List</a>
+</body>
+</html>

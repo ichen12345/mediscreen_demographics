@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Patients List</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .action-btn {
+      color: blue;
+      text-decoration: none;
+    }
+    .action-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Patients List</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Patient ID</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="patient : ${patients}">
+    <td th:text="${patient.patId}">Patient ID</td>
+    <td>
+      <span th:if="${#lists.isEmpty(patient.note)}">No notes available</span>
+      <span th:if="${!#lists.isEmpty(patient.note)}">
+          <span th:each="note : ${patient.note}">
+            <span th:text="${note}"></span><br/>
+          </span>
+        </span>
+    </td>
+    <td>
+      <a class="action-btn" th:href="@{/patHistory/update/{patId}(patId=${patient.patId})}">Update Notes</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

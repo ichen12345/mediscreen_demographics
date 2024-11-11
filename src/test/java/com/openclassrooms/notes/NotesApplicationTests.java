@@ -1,10 +1,10 @@
-package com.openclassrooms.mediscreen;
+package com.openclassrooms.notes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MediscreenApplicationTests {
+class NotesApplicationTests {
 
 	@Test
 	void contextLoads() {

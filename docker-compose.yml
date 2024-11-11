@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.1'
 services:
   demographics:
@@ -32,3 +33,42 @@ networks:
 
 volumes:
   postgres_data:
+=======
+version: "3.8"
+services:
+  notes:
+    container_name: app-notes-mongo
+    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: mediscreenmongo
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: passwordmongo
+#      ME_CONFIG_MONGODB_SERVER: mongodb
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/notes_mongodb
+    build: ./
+    ports:
+      - "8082:8082"
+    restart: always
+    networks:
+      - mongodb_network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+#      MONGO_INITDB_ROOT_USERNAME: mediscreenmongo
+#      MONGO_INITDB_ROOT_PASSWORD: passwordmongo
+      MONGO_INITDB_DATABASE: notes_mongodb
+    volumes:
+      - data:/data
+    networks:
+      - mongodb_network
+
+volumes:
+  data: {}
+
+networks:
+  default:
+    name: mongodb_network
+>>>>>>> a9997c88ad2664a8b75407de7db13e726ab4fdcf
